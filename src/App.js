@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import './App.css';
+import Cart from './components/Cart';
 import HandleProduct from './components/HandleProduct';
-import ShowProduct from './components/ShowProduct';
 
 function App() {
+  const [number, setNumber] = useState([]);
+
   return (
     <div className="App">
-      <HandleProduct />
-      <ShowProduct />
+      <HandleProduct setNumber={setNumber}/>
+      <Cart number={number} />
     </div>
   );
 }

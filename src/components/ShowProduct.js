@@ -1,10 +1,10 @@
 import React from "react";
 import Product from "./Product";
 
-export default function ShowProduct({ products, removeProduct }) {
+export default function ShowProduct({ products, removeProduct, setCartNumber }) {
     return (
         products?.map(product => {
-            return <Product key={product.id} removeProduct={removeProduct} product={product} />
+            return <Product key={product.id} removeProduct={removeProduct} setCartNumber={setCartNumber} product={product} />
         })
     )
 }

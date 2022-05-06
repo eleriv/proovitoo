@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_STORAGE_KEY = 'productApp.products'
 
-function HandleProduct() {
+function HandleProduct({ setNumber }) {
     const [products, setProducts] = useState([]);
     
     const productImageRef = useRef()
@@ -45,9 +45,13 @@ function HandleProduct() {
         setProducts(newProducts);
     }
 
+    function setCartNumber(number) {
+        setNumber(number)
+        console.log("HandleProduct.js" + number);
+    }
+
     return (
         <div className="">
-            <ShowProduct products={products} removeProduct={removeProduct} />
             <h3>Add product form</h3>
             <div>
                 <input ref={productImageRef} type='text' placeholder='Product Image'/>
@@ -55,6 +59,7 @@ function HandleProduct() {
                 <input ref={productPriceRef} type='text' placeholder='Product price'/>
             </div>
             <button onClick={addNewProduct}>Submit</button>
+            <ShowProduct products={products} removeProduct={removeProduct} setCartNumber={setCartNumber} />
         </div>
   );
 }
