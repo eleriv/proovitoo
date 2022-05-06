@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function Product({ product, removeProduct, setCartNumber }) {
-    const [count, setCount] = useState(1);
+export default function Product({ product, removeProduct, putToCart }) {
+    const IN_CART = 'In Cart';
+    const ADD_TO_CART = 'Add to cart';
 
     function handleProductToCart() {
-        console.log('handleProductToCart - Product.js');
-        setCount(count => count + 1);
-        setCartNumber(count);
+        putToCart(product.id)
     }
 
     function handleRemove() {
         removeProduct(product.id)
+    }
+
+    function buttonValue() {
+        if (product?.inCart) {
+            return IN_CART;
+        } else {
+            return ADD_TO_CART;
+        }
     }
 
     return (
@@ -23,7 +30,8 @@ export default function Product({ product, removeProduct, setCartNumber }) {
                 {product.name}
                 {product.price}
             </div>
-            <button onClick={handleProductToCart}>Add to cart</button>
+            
+            <button onClick={handleProductToCart}>{buttonValue()}</button>
         </div>
     )
 }

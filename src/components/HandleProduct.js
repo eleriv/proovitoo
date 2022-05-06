@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_STORAGE_KEY = 'productApp.products'
 
-function HandleProduct({ setNumber }) {
+function HandleProduct({ putToCart, setNumber }) {
     const [products, setProducts] = useState([]);
     
     const productImageRef = useRef()
@@ -32,7 +32,7 @@ function HandleProduct({ setNumber }) {
         if (price === '') return
 
         setProducts(prevProducts => {
-            return[...prevProducts, { id: uuidv4(), image: image, name: name, price: price}]
+            return[...prevProducts, { id: uuidv4(), image: image, name: name, price: price, inCart: false}]
         })
 
         productImageRef.current.value = null
@@ -45,9 +45,12 @@ function HandleProduct({ setNumber }) {
         setProducts(newProducts);
     }
 
-    function setCartNumber(number) {
-        setNumber(number)
-        console.log("HandleProduct.js" + number);
+    function putToCart(id) {
+        const newProducts = [...products]
+        const product = newProducts.find(products => products.id === id)
+        product.inCart = !product.inCart
+        setProducts(newProducts)
+        setNumber(products.filter(product => product.inCart).length)
     }
 
     return (
@@ -59,7 +62,7 @@ function HandleProduct({ setNumber }) {
                 <input ref={productPriceRef} type='text' placeholder='Product price'/>
             </div>
             <button onClick={addNewProduct}>Submit</button>
-            <ShowProduct products={products} removeProduct={removeProduct} setCartNumber={setCartNumber} />
+            <ShowProduct products={products} removeProduct={removeProduct} putToCart={putToCart} />
         </div>
   );
 }
