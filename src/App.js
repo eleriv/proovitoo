@@ -1,11 +1,11 @@
 import './App.css';
-import AddProduct from './components/AddProduct';
+import HandleProduct from './components/HandleProduct';
 import ShowProduct from './components/ShowProduct';
 
 function App() {
   return (
     <div className="App">
-      <AddProduct />
+      <HandleProduct />
       <ShowProduct />
     </div>
   );

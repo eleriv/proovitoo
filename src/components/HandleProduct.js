@@ -4,8 +4,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 const LOCAL_STORAGE_KEY = 'productApp.products'
 
-function AddProduct() {
+function HandleProduct() {
     const [products, setProducts] = useState([]);
+    
     const productImageRef = useRef()
     const productNameRef = useRef()
     const productPriceRef = useRef()
@@ -25,20 +26,28 @@ function AddProduct() {
         const image = productImageRef.current.value
         const name = productNameRef.current.value
         const price = productPriceRef.current.value
+
         if (image === '') return
         if (name === '') return
         if (price === '') return
+
         setProducts(prevProducts => {
             return[...prevProducts, { id: uuidv4(), image: image, name: name, price: price}]
         })
+
         productImageRef.current.value = null
         productNameRef.current.value = null
         productPriceRef.current.value = null
     }
 
+    function removeProduct(id) {
+        const newProducts = products.filter(product => product.id !== id);
+        setProducts(newProducts);
+    }
+
     return (
         <div className="">
-            <ShowProduct products={products} />
+            <ShowProduct products={products} removeProduct={removeProduct} />
             <h3>Add product form</h3>
             <div>
                 <input ref={productImageRef} type='text' placeholder='Product Image'/>
@@ -50,4 +59,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default HandleProduct;
