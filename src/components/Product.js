@@ -21,17 +21,17 @@ export default function Product({ product, removeProduct, putToCart }) {
     }
 
     return (
-        <div>
+        <div className="productItem">
             <div>
-                <button onClick={handleRemove}>x</button>
+                <button className="removeProduct" onClick={handleRemove}>x</button>
             </div>
-            <div className="product">
-                {product.image}
-                {product.name}
-                {product.price}
+            <div>
+                <div><img className="productImage" src={product.image} alt='Product'></img></div>
+                <div>{product.name}</div>
+                <div>{product.price}€</div>
             </div>
             
-            <button onClick={handleProductToCart}>{buttonValue()}</button>
+            <button className="btn" onClick={handleProductToCart}>{buttonValue()}</button>
         </div>
     )
 }

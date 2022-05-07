@@ -8,8 +8,9 @@ function App() {
 
   return (
     <div className="App">
-      <HandleProduct setNumber={setNumber}/>
       <Cart number={number} />
+      <HandleProduct setNumber={setNumber}/>
+      
     </div>
   );
 }

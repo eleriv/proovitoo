@@ -54,15 +54,17 @@ function HandleProduct({ putToCart, setNumber }) {
     }
 
     return (
-        <div className="">
-            <h3>Add product form</h3>
+        <div className="addProduct">
             <div>
-                <input ref={productImageRef} type='text' placeholder='Product Image'/>
-                <input ref={productNameRef} type='text' placeholder='Product Name'/>
-                <input ref={productPriceRef} type='text' placeholder='Product price'/>
+                <h3>Add product form</h3>
+                <div className="formInput"><input ref={productImageRef} type='text' placeholder='Product image'/></div>
+                <div className="formInput"><input ref={productNameRef} type='text' placeholder='Product name'/></div>
+                <div className="formInput"><input ref={productPriceRef} type='text' placeholder='Product price'/></div>  
+                <button className="btn" onClick={addNewProduct}>Submit</button>
             </div>
-            <button onClick={addNewProduct}>Submit</button>
-            <ShowProduct products={products} removeProduct={removeProduct} putToCart={putToCart} />
+            <div className="grid">
+                <ShowProduct products={products} removeProduct={removeProduct} putToCart={putToCart} />
+            </div>
         </div>
   );
 }

@@ -2,9 +2,8 @@ import React from "react";
 
 export default function Cart({ number }) {
     return (
-        <div>
+        <div className="cart">
              <p>Products in cart: {number}</p>
         </div>
-        
     )
 }
